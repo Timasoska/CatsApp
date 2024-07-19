@@ -11,16 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import com.example.catsapp.ui.theme.CatsAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val catsViewModel = ViewModelProvider(this)[CatsViewModel::class.java]
+
         enableEdgeToEdge()
         setContent {
             CatsAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainPage()
+                    MainPage(CatsViewModel())
                 }
             }
         }
