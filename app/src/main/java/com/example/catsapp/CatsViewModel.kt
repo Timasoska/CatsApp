@@ -1,5 +1,6 @@
 package com.example.catsapp
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +17,7 @@ class CatsViewModel : ViewModel() {
     private val _catsResult = MutableLiveData<NetworkResponse<CatsModel>>()
     val catsResult: LiveData<NetworkResponse<CatsModel>> = _catsResult
 
+    @SuppressLint("SuspiciousIndentation")
     fun getData(cats: String) {
         _catsResult.value = NetworkResponse.Loading
         viewModelScope.launch {

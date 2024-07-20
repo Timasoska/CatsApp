@@ -16,8 +16,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.ImageLoader
 import coil.compose.AsyncImage
+import com.example.catsapp.API.CatsModel
+import com.example.catsapp.API.CatsModelItem
 import com.example.catsapp.API.NetworkResponse
+import okhttp3.Response
 
 @Composable
 fun MainPage(viewModel: CatsViewModel){
@@ -46,7 +50,8 @@ fun MainPage(viewModel: CatsViewModel){
             CircularProgressIndicator()
         }
         is NetworkResponse.Success -> {
-            //AsyncImage(model = , contentDescription = , imageLoader = )
+            val catImageUrl = result.data.firstOrNull()?.url
+            AsyncImage(model = catImageUrl, contentDescription ="CatsImage")
         }
         null -> {}
     }
